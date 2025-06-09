@@ -19,14 +19,14 @@ public class JwtService {
 
     private static final String SECRET = "cd08700adb9d70cb9313a051aa52c15a2c7d1fa24f49e9dbf94ca33b5c67b9a3";
     Claims claims;
-    SecretKey key;
+    SecretKey key = Keys.hmacShaKeyFor(SECRET.getBytes(StandardCharsets.UTF_8));
+
     public  String extractUsername(String token){
         return  extractClaim(token, Claims::getSubject);
     }
 
     private Claims extractAllclaims(String token){
         try {
-            key = Keys.hmacShaKeyFor(SECRET.getBytes(StandardCharsets.UTF_8));
             claims  = Jwts.parser()
                     .verifyWith(key)
                     .build()
