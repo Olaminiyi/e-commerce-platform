@@ -1,10 +1,12 @@
 package com.auth_service.auth;
 
 import com.auth_service.config.JwtService;
+import com.auth_service.exception.model.AuthenticationException;
 import com.auth_service.user.Role;
 import com.auth_service.user.User;
 import com.auth_service.user.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -44,7 +46,8 @@ public class AuthenticationService {
         );
         var user = repository.findByEmail(request.getEmail())
                 // make sure you catch the exception
-                .orElseThrow();
+                .orElseThrow(() -> new AuthenticationException("user not found", HttpStatus.BAD_REQUEST.value()));
+
         var jwtToken = service.generateToken(user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
