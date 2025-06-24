@@ -25,7 +25,13 @@ public class SecurityConfiguration {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         //whitelisting some endpoints we don't want to authenticate
-                .requestMatchers("/api/v1/auth/**")
+                .requestMatchers("/api/v1/auth/**",
+                        "/swagger-ui/**",
+                        "/swagger-ui.html",
+                        "/v3/api-docs/**",
+                        "/v2/api-docs",
+                        "/swagger-resources/**",
+                        "/webjars/**")
                 .permitAll()
                 //authenticate any other endpoints apart from the whitelisted one.
                 .anyRequest()
