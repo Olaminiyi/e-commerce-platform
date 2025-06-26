@@ -23,6 +23,9 @@ public class AuthenticationService {
 
 
     public AuthenticationResponse register(RegisterRequest request) {
+        if(repository.findByEmail(request.getEmail()).isPresent()){
+            throw new AuthenticationException("email already in use",HttpStatus.CONFLICT.value());
+        }
         var user = User.builder()
                 .firstName(request.getFirstname())
                 .lastName(request.getLastname())
@@ -46,7 +49,7 @@ public class AuthenticationService {
         );
         var user = repository.findByEmail(request.getEmail())
                 // make sure you catch the exception
-                .orElseThrow(() -> new AuthenticationException("user not found", HttpStatus.BAD_REQUEST.value()));
+                .orElseThrow(() -> new AuthenticationException("user not found", HttpStatus.NOT_FOUND.value()));
 
         var jwtToken = service.generateToken(user);
         return AuthenticationResponse.builder()
