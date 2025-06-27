@@ -11,7 +11,7 @@ import java.io.Serializable;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ExceptionDetail implements Serializable {
+public class JwtExceptionDetail implements Serializable {
     private int status;
     private String message;
 }

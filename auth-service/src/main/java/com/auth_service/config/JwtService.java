@@ -3,9 +3,9 @@ package com.auth_service.config;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
-
 import javax.crypto.SecretKey;
 import java.nio.charset.StandardCharsets;
 import java.util.Date;
@@ -34,7 +34,7 @@ public class JwtService {
                     .getPayload();
         }
         catch (JwtException e){
-            log.info("invalid or expired token: " + e.getMessage());
+            throw new com.auth_service.exception.model.JwtException("invalid or expired token", HttpStatus.UNAUTHORIZED.value());
         }
         return claims;
     }

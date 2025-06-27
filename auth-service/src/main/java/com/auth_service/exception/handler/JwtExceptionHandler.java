@@ -2,6 +2,8 @@ package com.auth_service.exception.handler;
 
 import com.auth_service.exception.model.AuthenticationException;
 import com.auth_service.exception.model.AuthenticationExceptionDetail;
+import com.auth_service.exception.model.JwtException;
+import com.auth_service.exception.model.JwtExceptionDetail;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -10,11 +12,11 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @ControllerAdvice
-public class AuthenticationExceptionHandler extends ResponseEntityExceptionHandler {
+public class JwtExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(AuthenticationException.class)
-    public ResponseEntity<Object> handleAuthenticationException(AuthenticationException e){
-        AuthenticationExceptionDetail details = AuthenticationExceptionDetail.builder()
+    @ExceptionHandler(JwtException.class)
+    public ResponseEntity<Object> handleAuthenticationException(JwtException e){
+        JwtExceptionDetail details = JwtExceptionDetail.builder()
                 .message(e.getMessage())
                 .status(e.getStatus())
                 .build();
@@ -23,7 +25,7 @@ public class AuthenticationExceptionHandler extends ResponseEntityExceptionHandl
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Object> handleGenericException(Exception e){
-        AuthenticationExceptionDetail details = AuthenticationExceptionDetail.builder()
+        JwtExceptionDetail details = JwtExceptionDetail.builder()
                 .message("internal server error")
                 .status(500)
                 .build();
