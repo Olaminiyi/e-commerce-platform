@@ -101,7 +101,6 @@ public class AuthenticationServiceTest {
 
         when(jwtService.generateToken(mockUser)).thenReturn("mock-jwt-token");
         when(repository.findByEmail("johnbull@gmail.com")).thenReturn(Optional.of(mockUser));
-      //  lenient().when(passwordEncoder.encode("johnbull001")).thenReturn("johnbull001");
 
         AuthenticationResponse response = authService.authenticate(request);
 
@@ -122,7 +121,5 @@ public class AuthenticationServiceTest {
         AuthenticationException exception = assertThrows(AuthenticationException.class, () -> authService.authenticate(request));
         assertEquals("user not found", exception.getMessage());
         assertEquals(404, exception.getStatus());
-
     }
-
 }

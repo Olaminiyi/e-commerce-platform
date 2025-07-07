@@ -35,8 +35,8 @@ public class userRegistration {
     private RegisterRequest request;
     private AuthenticationResponse response;
 
-    @BeforeEach
-    void setUp() {
+    @io.cucumber.java.Before
+    public void setUp() {
         MockitoAnnotations.openMocks(this);
     }
 
@@ -54,6 +54,7 @@ public class userRegistration {
 
     @Given("the user register with theses details")
     public void the_user_register_with_theses_details() {
+
         when(passwordEncoder.encode("labubu001")).thenReturn("encodedPassword");
         when(repository.save(any(User.class))).thenAnswer(invocation -> invocation.getArgument(0));
         when(jwtService.generateToken(any(userDetails.getClass()))).thenReturn("mock-jwt-token");
