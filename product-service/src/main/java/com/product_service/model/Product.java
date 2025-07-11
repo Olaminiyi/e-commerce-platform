@@ -46,7 +46,6 @@ public class Product {
     )
     private Set<Tag> tags = new HashSet<>();
 
-
     private String brand;
     private String imageUrl;
     private boolean available;

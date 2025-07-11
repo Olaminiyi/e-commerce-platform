@@ -1,5 +1,4 @@
 package product_service.model;
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,7 +18,6 @@ public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String comment;
     private int rating;
     private LocalDateTime createdAt;
@@ -28,5 +26,4 @@ public class Review {
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
-
 }
