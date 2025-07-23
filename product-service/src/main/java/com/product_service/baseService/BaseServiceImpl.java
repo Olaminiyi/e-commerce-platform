@@ -1,8 +1,10 @@
 package product_service.baseService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.http.HttpStatus;
 import product_service.exception.model.ProductServiceException;
-import java.util.List;
+//import java.awt.print.Pageable;
 import java.util.Optional;
 
 public abstract class BaseServiceImpl<T, ID> implements BaseService<T, ID>{
@@ -24,8 +26,8 @@ public abstract class BaseServiceImpl<T, ID> implements BaseService<T, ID>{
     }
 
     @Override
-    public List<T> findAll() {
-        return repository.findAll();
+    public Page<T> findAll(Pageable pageable) {
+        return repository.findAll(pageable);
     }
 
     @Override
