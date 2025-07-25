@@ -1,5 +1,4 @@
 package com.auth_service.exception.handler;
-
 import com.auth_service.exception.model.AuthenticationException;
 import com.auth_service.exception.model.AuthenticationExceptionDetail;
 import org.springframework.http.HttpStatus;
