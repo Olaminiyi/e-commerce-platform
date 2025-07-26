@@ -1,6 +1,5 @@
 package product_service.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -16,19 +15,22 @@ import product_service.repository.TagRepository;
 
 @Service
 public class ProductService extends BaseServiceImpl<Product, Long> {
-    @Autowired
     private final CategoryRepository categoryRepository;
-    @Autowired
     private final TagRepository tagRepository;
-    @Autowired
-  //  private  final ProductRepository productRepository;
+    private  final ProductRepository productRepository;
 
     public ProductService(ProductRepository productRepository, CategoryRepository categoryRepository, TagRepository tagRepository){
 
         super(productRepository);
-      //  this.productRepository = productRepository;
+        this.productRepository = productRepository;
         this.categoryRepository = categoryRepository;
         this.tagRepository = tagRepository;
+    }
+
+    @Override
+    public Page<Product> findAll(Pageable pageable){
+
+        return null;
     }
 
     public Page<Product> search (Long categoryId, Long tagId, String keyword, Pageable pageable){
@@ -49,10 +51,20 @@ public class ProductService extends BaseServiceImpl<Product, Long> {
                     .orElseThrow(() -> new ProductServiceException("Tag not found", HttpStatus.NOT_FOUND.value()));
         }
 
-        if(category != null && tag != null) {
-            return productRepository
-        }
+        Page<Product> products;
 
+        if(category != null && tag != null) {
+            products = productRepository.findByCategoryAndTagAndKeywordContainingIgnoreCase(categoryId, tagId, keyword, pageable);
+        } else if (category != null) {
+            products = productRepository.findByCategoryAndKeywordContainingIgnoreCase(categoryId, keyword, pageable);
+        } else if (tag != null) {
+            products = productRepository.findByTagAndKeywordContainingIgnoreCase(tagId,keyword,pageable);
+        }else {
+            products = productRepository.findByKeywordContainingIgnoreCase(keyword,pageable);
+        }
+        return null;
     }
+
+
 
 }
