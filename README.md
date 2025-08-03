@@ -7,7 +7,7 @@ This project is a scalable and modular e-commerce platform designed using a micr
 
 ## ⚙️ Microservices Breakdown
 🔐 Auth/User Service
-Manages user registration, login, and authentication (JWT-based).
+Manages user registration, login, and authentication (JWT-based)
 
 Role-based access control.
 
