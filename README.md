@@ -14,7 +14,7 @@ Role-based access control.
 Profile management and password encryption.
 
 ## 🛍️ Product Service
-Manages product catalog (CRUD).
+Manages product catalog (CRUD)
 
 Handles categories, tags, and product filtering.
 
