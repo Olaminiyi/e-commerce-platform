@@ -6,7 +6,8 @@
 This project is a scalable and modular e-commerce platform designed using a microservices architecture. Each service is responsible for a distinct business capability, making the system maintainable, testable, and deployable independently
 
 ## ⚙️ Microservices Breakdown
-🔐 Auth/User Service
+
+## 🔐 Auth/User Service
 Manages user registration, login, and authentication (JWT-based)
 
 Role-based access control.
