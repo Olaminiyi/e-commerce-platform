@@ -10,7 +10,7 @@ This project is a scalable and modular e-commerce platform designed using a micr
 ## 🔐 Auth/User Service
 Manages user registration, login, and authentication (JWT-based)
 
-Role-based access control.
+Role-based access control
 
 Profile management and password encryption.
 
