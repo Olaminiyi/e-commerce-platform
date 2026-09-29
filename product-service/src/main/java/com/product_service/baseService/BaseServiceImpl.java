@@ -4,7 +4,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.http.HttpStatus;
 import product_service.exception.model.ProductServiceException;
-//import java.awt.print.Pageable;
 import java.util.Optional;
 
 public abstract class BaseServiceImpl<T, ID> implements BaseService<T, ID>{
